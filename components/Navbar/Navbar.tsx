@@ -1,29 +1,28 @@
-import { mainLinks, userLinks } from "@/data/data";
 import Link from "next/link";
-import { AiOutlineUser } from "react-icons/ai";
-import { CgShoppingCart } from "react-icons/cg";
-import { GrFavorite } from "react-icons/gr";
+import { TbBracketsAngle } from "react-icons/tb";
+import MainLinks from "./MainLinks";
+import NavUser from "./NavUser";
+import UserLinks from "./UserLinks";
+import MobileMenu from "./MobileMenu";
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between max-w-6xl mx-auto border-b py-4 px-10 md:px-0">
+    <nav className="flex items-center justify-between border-b py-4 stick top-0 main-container">
       <Link href="/">
-        <h1 className="font-semibold">DEV-THREADS{"<>"}</h1>
+        <h1 className="font-semibold flex items-center gap-1">
+          DEV-THREADS
+          <TbBracketsAngle />
+        </h1>
       </Link>
+
       <div className="md:flex hidden gap-8">
-        {mainLinks.map((link, index) => (
-          <Link href={link.route} key={index}>
-            {link.label}
-          </Link>
-        ))}
+        <MainLinks />
       </div>
+
       <div className="flex items-center gap-5 text-xl">
-        {userLinks.map((link, index) => (
-          <Link href={link.route} key={index}>
-            {link.label === "Orders" ? <CgShoppingCart /> : <GrFavorite />}
-          </Link>
-        ))}
-        <AiOutlineUser />
+        <UserLinks />
+        <NavUser />
+        <MobileMenu />
       </div>
     </nav>
   );
