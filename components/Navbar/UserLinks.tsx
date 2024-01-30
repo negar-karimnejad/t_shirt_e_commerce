@@ -1,17 +1,15 @@
 import { userLinks } from "@/data/data";
 import Link from "next/link";
-import { CgShoppingCart } from "react-icons/cg";
-import { GrFavorite } from "react-icons/gr";
 
 function UserLinks() {
   return (
-    <>
+    <div className="flex flex-col text-sm text-center md:gap-4 gap-6">
       {userLinks.map((link, index) => (
         <Link href={link.route} key={index}>
-          {link.label === "Orders" ? <CgShoppingCart /> : <GrFavorite />}
+          {link.label}
         </Link>
       ))}
-    </>
+    </div>
   );
 }
 

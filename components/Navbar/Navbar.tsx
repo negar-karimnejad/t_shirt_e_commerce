@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { TbBracketsAngle } from "react-icons/tb";
 import MainLinks from "./MainLinks";
-import NavUser from "./NavUser";
-import UserLinks from "./UserLinks";
 import MobileMenu from "./MobileMenu";
+import { CgShoppingCart } from "react-icons/cg";
+import { GrFavorite } from "react-icons/gr";
+import NavUser from "./NavUser";
 
 function Navbar() {
   return (
@@ -20,7 +21,8 @@ function Navbar() {
       </div>
 
       <div className="flex items-center gap-5 text-xl">
-        <UserLinks />
+        <CgShoppingCart />
+        <GrFavorite />
         <NavUser />
         <MobileMenu />
       </div>
