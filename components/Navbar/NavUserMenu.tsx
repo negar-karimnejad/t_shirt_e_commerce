@@ -11,20 +11,24 @@ function NavUserMenu() {
       {user ? (
         <>
           <UserLinks />
-          <Link
-            href="/sign-out"
+          <button
             className="whitespace-nowrap"
-            onClick={() => signOut()}
+            onClick={() => {
+              signOut();
+            }}
           >
             Sign Out
-          </Link>
+          </button>
         </>
       ) : (
         <>
-          <Link className="whitespace-nowrap" href="/login">
+          <Link className="whitespace-nowrap" href="/sign-in">
             Log In
           </Link>
-          <button className="whitespace-nowrap">Sign Up</button>
+
+          <Link href="/sign-up" className="whitespace-nowrap">
+            Sign Up
+          </Link>
         </>
       )}
     </div>

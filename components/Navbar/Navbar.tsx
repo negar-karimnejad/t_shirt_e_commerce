@@ -10,13 +10,13 @@ function Navbar() {
   return (
     <nav className="flex items-center justify-between border-b py-4 stick top-0 main-container">
       <Link href="/">
-        <h1 className="font-semibold flex items-center gap-1">
+        <h1 className="font-bold text-lg flex items-center gap-1">
           DEV-THREADS
           <TbBracketsAngle />
         </h1>
       </Link>
 
-      <div className="md:flex hidden gap-8">
+      <div className="md:flex hidden gap-8 font-bold text-gray-500">
         <MainLinks />
       </div>
 
