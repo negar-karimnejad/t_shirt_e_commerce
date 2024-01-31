@@ -5,12 +5,18 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
 const page = () => {
+  const handleSignin = async (formData: FormData) => {
+    "use server";
+    const { email, password } = Object.fromEntries(formData);
+   
+  };
+
   return (
     <div className="p-5 rounded-md border flex flex-col gap-5 max-w-xl main-container my-10">
       <header className="text-3xl font-semibold">
         <h1>Sign in</h1>
       </header>
-      <form action="" className="flex flex-col gap-5 mt-5">
+      <form action={handleSignin} className="flex flex-col gap-5 mt-5">
         <div className="flex flex-col gap-1">
           <Label htmlFor="email">Email</Label>
           <Input type="email" id="email" name="email" />
