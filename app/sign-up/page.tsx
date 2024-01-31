@@ -6,14 +6,14 @@ import { BsArrowRight } from "react-icons/bs";
 import { TbBracketsAngle } from "react-icons/tb";
 
 const page = () => {
-  const handleSignup = async () => {};
+  // const handleSignup = async () => {};
   return (
     <div className="p-5 rounded-md border flex flex-col gap-5 max-w-xl main-container my-10">
       <header className="bg-slate-800 text-white text-lg font-semibold p-3 rounded-md flex items-center justify-center gap-2 ">
         <h1>JOIN THE DT AQUAD</h1>
         <TbBracketsAngle />
       </header>
-      <form action={handleSignup} className="flex flex-col gap-5 mt-5">
+      <form action="" className="flex flex-col gap-5 mt-5">
         <div className="flex flex-col gap-1">
           <Label htmlFor="name">Name</Label>
           <Input type="text" id="name" name="name" />
