@@ -17,7 +17,7 @@ function Button({ type, children, onClick, disabled }: ButtonProps) {
       disabled={disabled}
       onClick={onClick}
       aria-disabled={pending}
-      className="bg-slate-800 text-white px-3 py-2 font-semibold cursor-pointer rounded-md shadow"
+      className="bg-slate-800 text-white px-3 py-2 font-medium cursor-pointer rounded-md shadow"
     >
       {children}
     </button>

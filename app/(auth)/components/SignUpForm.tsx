@@ -2,24 +2,25 @@
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import Link from "next/link";
-import { useState } from "react";
-import { TbBracketsAngle } from "react-icons/tb";
+import Label from "@/components/ui/Label";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
+import { TbBracketsAngle } from "react-icons/tb";
 import { createUser } from "../actions/AuthActions";
 
-const SignUpForm = () => {
+function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const session = useSession();
-  const ref = useRef<HTMLFormElement>(null);
   const router = useRouter();
+  const ref = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (session.status === "authenticated") {
-      toast.success("You are already signed in!");
+      toast.error("You are already signed in");
       router.push("/");
     }
   }, [session.status, router]);
@@ -28,52 +29,64 @@ const SignUpForm = () => {
     setIsSubmitting(true);
     const result = await createUser(formData);
 
-    if (result?.existingUser) {
-      toast.error(result.existingUser);
+    if (result?.existedUser) {
+      toast.error(result?.existedUser);
     } else {
-      toast.success("Welcome! Please Sign In");
+      toast.success("Welcome🎉, Please Sign In");
       ref.current?.reset();
       router.push("/sign-in");
     }
-
     setIsSubmitting(false);
+    console.log(result);
   };
 
   return (
-    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-2xl md:outline outline-1 outline-gray-200">
-      <div className="px-4 py-8 sm:rounded-lg sm:px-10">
-        <div className="md:text-4xl sm:text-2xl mb-5 uppercase w-full text-center flex items-center text-white gap-1 justify-center bg-gray-700 py-4 rounded-md">
-          <h1>Join the DT Squad</h1>
-          <TbBracketsAngle />
+    <div className="p-5 rounded-md border flex flex-col gap-5 max-w-xl main-container">
+      <header className="bg-slate-800 text-white text-lg font-medium p-3 rounded-md flex items-center justify-center gap-2 ">
+        <h1>JOIN THE DT AQUAD</h1>
+        <TbBracketsAngle />
+      </header>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+          handleSubmit(formData);
+        }}
+        ref={ref}
+        className="flex flex-col gap-5 mt-5"
+      >
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="name">Name</Label>
+          <Input disabled={isSubmitting} type="text" id="name" name="name" />
         </div>
 
-        <form
-          ref={ref}
-          onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData(e.currentTarget);
-            handleSubmit(formData);
-          }}
-          className="space-y-6 mb-3"
-        >
-          <Input type="text" id="name" name="Name" disabled={isSubmitting} />
-          <Input type="email" id="email" name="Email" disabled={isSubmitting} />
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="email">Email</Label>
+          <Input disabled={isSubmitting} type="email" id="email" name="email" />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="password">Password</Label>
           <Input
+            disabled={isSubmitting}
             type="password"
             id="password"
-            name="Password"
-            disabled={isSubmitting}
+            name="password"
           />
+        </div>
+
+        <div>
           <Button type="submit">Create Account</Button>
-        </form>
-        <Link href={"/sign-in"}>
-          <span className="mt-3 hover:underline">
-            Already have an account? Sign In &#8594;
-          </span>
+        </div>
+      </form>
+      <p className="flex items-center gap-1">
+        Already have an account?
+        <Link href="sign-in" className="hover:underline">
+          Sign in &#8594;
         </Link>
-      </div>
+      </p>
     </div>
   );
-};
+}
 
 export default SignUpForm;

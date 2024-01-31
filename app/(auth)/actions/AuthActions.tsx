@@ -1,38 +1,30 @@
 "use server";
 import prisma from "@/lib/prismadb";
-import { revalidatePath } from "next/cache";
 import bcrypt from "bcrypt";
+import { revalidatePath } from "next/cache";
 
 export async function createUser(formData: FormData) {
   try {
-    const email = formData.get("email") as string;
     const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
     try {
-      const existingUser = await prisma.user.findUnique({
+      const existedUser = await prisma.user.findUnique({
         where: { email },
       });
 
-      if (existingUser) {
+      if (existedUser) {
         throw new Error("You are already a member");
       }
-
       const hashedPassword = await bcrypt.hash(password, 12);
 
       await prisma.user.create({
-        data: {
-          email: email,
-          name: name,
-          hashedPassword: hashedPassword,
-        },
+        data: { name: name, email: email, hashedPassword: hashedPassword },
       });
-
       revalidatePath("/");
-    } catch (existingUser) {
-      return {
-        existingUser: "You are already a member, please sign in",
-      };
+    } catch (existedUser) {
+      return { existedUser: "You are already a member, please sign in" };
     }
   } catch (error) {
     console.error(error);
