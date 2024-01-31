@@ -3,8 +3,8 @@ import AuthProvider from "@/context/AuthProvider";
 import ToastContext from "@/context/HotToastContext";
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import GetCurrentUser from "./(auth)/actions/getCurrentUser";
 import "./globals.css";
+import GetCurrentUser from "./(auth)/actions/getCurrentUser";
 
 const raleway = Raleway({
   subsets: ["latin"],

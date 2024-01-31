@@ -1,6 +1,5 @@
 "use client";
 
-import createUser from "@/app/(auth)/actions/AuthActions";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +9,7 @@ import { TbBracketsAngle } from "react-icons/tb";
 import Button from "./ui/Button";
 import Input from "./ui/Input";
 import Label from "./ui/Label";
+import createUser from "@/app/(auth)/actions/AuthActions";
 
 function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
