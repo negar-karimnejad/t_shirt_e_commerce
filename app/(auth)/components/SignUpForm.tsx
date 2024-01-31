@@ -1,15 +1,15 @@
 "use client";
 
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import Label from "@/components/ui/Label";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { TbBracketsAngle } from "react-icons/tb";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-import Label from "./ui/Label";
-import createUser from "@/app/(auth)/actions/AuthActions";
+import { createUser } from "../actions/AuthActions";
 
 function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);

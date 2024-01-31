@@ -3,7 +3,7 @@ import prisma from "@/lib/prismadb";
 import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
 
-export default async function createUser(formData: FormData) {
+export async function createUser(formData: FormData) {
   try {
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
@@ -13,9 +13,10 @@ export default async function createUser(formData: FormData) {
       const existedUser = await prisma.user.findUnique({
         where: { email },
       });
+      console.log(existedUser);
 
-      if (existedUser) {
-        throw new Error("You are already a member");
+      if (existedUser !== null) {
+        return { existedUser: "You are already a member, please sign in" };
       }
       const hashedPassword = await bcrypt.hash(password, 12);
 

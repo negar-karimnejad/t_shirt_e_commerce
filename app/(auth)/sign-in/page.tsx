@@ -1,9 +1,6 @@
-import SignInForm from "@/components/SignInForm";
-
+import SignInForm from "@/app/(auth)/components/SignInForm";
 
 const page = () => {
-  
-
   return (
     <div className="my-10 ">
       <SignInForm />
