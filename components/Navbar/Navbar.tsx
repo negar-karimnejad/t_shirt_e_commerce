@@ -12,8 +12,6 @@ type NavbarProps = {
 };
 
 function Navbar({ user }: NavbarProps) {
-  console.log("😎USER:", user);
-
   return (
     <nav className="flex items-center justify-between border-b py-4 stick top-0 main-container">
       <Link href="/">

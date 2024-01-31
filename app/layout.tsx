@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
-import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import AuthProvider from "@/context/AuthProvider";
+import ToastContext from "@/context/HotToastContext";
+import type { Metadata } from "next";
+import { Raleway } from "next/font/google";
 import GetCurrentUser from "./(auth)/actions/getCurrentUser";
+import "./globals.css";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <AuthProvider>
+          <ToastContext />
           <Navbar user={user!} />
           {children}
         </AuthProvider>
