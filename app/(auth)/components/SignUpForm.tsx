@@ -37,7 +37,6 @@ function SignUpForm() {
       router.push("/sign-in");
     }
     setIsSubmitting(false);
-    console.log(result);
   };
 
   return (
