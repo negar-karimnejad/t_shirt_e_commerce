@@ -5,8 +5,15 @@ import MobileMenu from "./MobileMenu";
 import { CgShoppingCart } from "react-icons/cg";
 import { GrFavorite } from "react-icons/gr";
 import NavUser from "./NavUser";
+import { User } from "@prisma/client";
 
-function Navbar() {
+type NavbarProps = {
+  user: User;
+};
+
+function Navbar({ user }: NavbarProps) {
+  console.log("😎USER:", user);
+
   return (
     <nav className="flex items-center justify-between border-b py-4 stick top-0 main-container">
       <Link href="/">

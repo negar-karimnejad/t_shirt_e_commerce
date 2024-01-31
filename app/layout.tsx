@@ -3,6 +3,7 @@ import { Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import AuthProvider from "@/context/AuthProvider";
+import GetCurrentUser from "./(auth)/actions/getCurrentUser";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -14,16 +15,18 @@ export const metadata: Metadata = {
   description: "E-commerce Website",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await GetCurrentUser();
+
   return (
     <html lang="en">
       <body className={raleway.className}>
         <AuthProvider>
-          <Navbar />
+          <Navbar user={user!} />
           {children}
         </AuthProvider>
       </body>
