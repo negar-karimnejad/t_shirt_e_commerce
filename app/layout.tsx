@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import GetCurrentUser from "./(auth)/actions/getCurrentUser";
 import "./globals.css";
+import CartContex from "@/context/CartContext";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -27,9 +28,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <AuthProvider>
-          <ToastContext />
-          <Navbar user={user!} />
-          {children}
+          <CartContex>
+            <ToastContext />
+            <Navbar user={user!} />
+            {children}
+          </CartContex>
         </AuthProvider>
       </body>
     </html>

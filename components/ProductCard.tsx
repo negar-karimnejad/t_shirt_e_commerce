@@ -1,14 +1,22 @@
 "use client";
 
+import AddToCart from "@/app/(shoppingcart)/components/ui/AddToCart";
 import { ProductTypes } from "@/types/ProductTypes";
-import Image from "next/image";
-import { FaHeartCirclePlus } from "react-icons/fa6";
-import { FaEye } from "react-icons/fa";
 import { formatCurrency } from "@/utilities/formatCurrency";
+import Image from "next/image";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { FaEye } from "react-icons/fa";
+import { FaHeartCirclePlus } from "react-icons/fa6";
 
 function ProductCard({ product }: { product: ProductTypes }) {
-  const [selectedSize, setSelectedSize] = useState("-1");
+  const [selectedSize, setSelectedSize] = useState("");
+  const isSizeSelected = selectedSize !== "";
+
+  const showToast = () => {
+    toast.error("Please choose a size first!");
+  };
+
   return (
     <div className="relative group text-gray-500 flex flex-col gap-2 items-center justify-center">
       <Image
@@ -35,12 +43,21 @@ function ProductCard({ product }: { product: ProductTypes }) {
         id=""
         className="border rounded-md p-2"
       >
-        <option value="-1">Select Size</option>
+        <option value="">Select Size</option>
         <option value="small">Small</option>
         <option value="medium">Medium</option>
         <option value="large">Large</option>
       </select>
-      <button>Add to cart</button>
+      <AddToCart
+        name={product.name}
+        image={product.image}
+        price={product.unit_amount}
+        id={product.price_id!}
+        sizeSelect={isSizeSelected}
+        size={selectedSize}
+        onClick={!isSizeSelected ? showToast : undefined}
+        currency="USD"
+      />
     </div>
   );
 }
