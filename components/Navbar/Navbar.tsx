@@ -1,20 +1,20 @@
+"use client";
+import CartIcon from "@/app/(shoppingcart)/components/ui/CartIcon";
+import { User } from "@prisma/client";
 import Link from "next/link";
+import { GrFavorite } from "react-icons/gr";
 import { TbBracketsAngle } from "react-icons/tb";
 import MainLinks from "./MainLinks";
 import MobileMenu from "./MobileMenu";
-import { CgShoppingCart } from "react-icons/cg";
-import { GrFavorite } from "react-icons/gr";
 import NavUser from "./NavUser";
-import { User } from "@prisma/client";
 
 export type NavbarProps = {
   user: User;
 };
 
 function Navbar({ user }: NavbarProps) {
-
   return (
-    <nav className="flex items-center justify-between border-b py-4 stick top-0 main-container">
+    <nav className="flex items-center justify-between border-b py-4 sticky top-0 right-0 main-container bg-white z-50">
       <Link href="/">
         <h1 className="font-bold text-lg flex items-center gap-1">
           DEV-THREADS
@@ -27,10 +27,10 @@ function Navbar({ user }: NavbarProps) {
       </div>
 
       <div className="flex items-center gap-5 text-xl">
-        <CgShoppingCart />
+        <CartIcon />
         <GrFavorite />
-        <NavUser user={user}/>
-        <MobileMenu user={user}/>
+        <NavUser user={user} />
+        <MobileMenu user={user} />
       </div>
     </nav>
   );

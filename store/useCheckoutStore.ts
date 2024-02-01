@@ -8,7 +8,7 @@ type CkeckoutState = {
   setCheckout: (val: string) => void;
 };
 
-export const useCkeckoutStore = create<CkeckoutState>()(
+export const useCheckoutStore = create<CkeckoutState>()(
   persist(
     (set) => ({
       // Initial State

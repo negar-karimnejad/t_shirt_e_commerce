@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import Cart from "../components/Cart";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <Cart/>
+  );
 }
 
-export default page
+export default page;
