@@ -17,7 +17,7 @@ async function TopProducts() {
             View More &#8594;
           </Link>
         </div>
-        <div className="grid mt-5 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 items-center mt-5 gap-2">
           {topProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
