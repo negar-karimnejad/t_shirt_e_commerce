@@ -53,7 +53,30 @@ model User {
   orders         Order[]
   account        Account[]
   Session        Session[]
+  Product        Product[]
 }
+
+model Product {
+  id          String     @id @default(cuid()) @map("_id")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  title       String
+  published   Boolean    @default(false)
+  name        String?
+  image       String?
+  top_rated   Boolean
+  unit_amount Float
+  price_id    String
+  currency    Float
+  description String
+  quantity    Float
+}
+
+// model Category {
+//   id       String    @id @default(cuid()) @map("_id")
+//   name     String
+//   products Product[]
+// }
 
 model Order {
   id              String      @id @default(cuid()) @map("_id")
@@ -67,15 +90,15 @@ model Order {
   items           OrderItem[]
 }
 
-model OrderItem {
-  id       String  @id @default(cuid()) @map("_id")
-  orderId  String
-  Order    Order   @relation(fields: [orderId], references: [id])
-  name     String
-  quantity Int
-  price    Float
-  image    String?
-  size     String
+// model OrderItem {
+//   id       String  @id @default(cuid()) @map("_id")
+//   orderId  String
+//   Order    Order   @relation(fields: [orderId], references: [id])
+//   name     String
+//   quantity Int
+//   price    Float
+//   image    String?
+//   size     String
 
-  @@unique([orderId, name])
-}
+//   @@unique([orderId, name])
+// }
